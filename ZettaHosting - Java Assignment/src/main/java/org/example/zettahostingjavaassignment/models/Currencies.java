@@ -6,11 +6,15 @@ import org.example.zettahostingjavaassignment.models.enums.CurrenciesEnums;
 public class Currencies {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     @Enumerated(EnumType.STRING)
+    @Column(name = "currencyFrom")
     private CurrenciesEnums currenciesFrom;
     @Enumerated(EnumType.STRING)
+    @Column(name = "currencyTo")
     private CurrenciesEnums currenciesTo;
+    @Column(name = "exchangeRate")
     private double exchangeRate;
 
     public Currencies() {
