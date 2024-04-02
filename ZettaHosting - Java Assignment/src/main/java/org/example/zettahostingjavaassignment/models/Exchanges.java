@@ -8,18 +8,24 @@ import java.time.format.DateTimeFormatter;
 public class Exchanges {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "currencyFrom")
     private CurrenciesEnums currenciesFrom;
 
+    @Column(name = "amountFrom")
     private double amountFrom;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "currencyTo")
     private CurrenciesEnums currenciesTo;
 
+    @Column(name = "amountTo")
     private double amountTo;
 
+    @Column(name = "history")
     private DateTimeFormatter history;
 
     public Exchanges() {
