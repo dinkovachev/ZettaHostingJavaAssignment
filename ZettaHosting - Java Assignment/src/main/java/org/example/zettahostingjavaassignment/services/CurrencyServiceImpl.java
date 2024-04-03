@@ -7,6 +7,7 @@ import org.example.zettahostingjavaassignment.services.contracts.CurrencyService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,9 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public List<Currencies> getAllCurrencies() {
-        return currencyRepository.findAll();
+        List<Currencies> currenciesList = currencyRepository.findAll();
+        currenciesList.sort(Comparator.comparing(Currencies::getCurrencyName));
+        return currenciesList;
     }
 
     @Override

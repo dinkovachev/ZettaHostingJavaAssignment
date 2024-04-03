@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
+@Entity
+@Table(name = "currencies")
 public class Currencies {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,10 +1,18 @@
 package org.example.zettahostingjavaassignment.controllers;
 
 
+import org.example.zettahostingjavaassignment.models.Currencies;
+import org.example.zettahostingjavaassignment.models.Exchanges;
 import org.example.zettahostingjavaassignment.services.contracts.ExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/exchange")
@@ -15,6 +23,16 @@ public class ExchangeRestController {
     @Autowired
     public ExchangeRestController(ExchangeService exchangeService) {
         this.exchangeService = exchangeService;
+    }
+
+    @GetMapping
+    public ResponseEntity<Double> convertCurrencies(@RequestBody Exchanges currencies) {
+        Optional<Double> resultOptional = exchangeService.convert(currencies);
+        if (resultOptional.isPresent()){
+            return new ResponseEntity<>(resultOptional.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
     }
 
 

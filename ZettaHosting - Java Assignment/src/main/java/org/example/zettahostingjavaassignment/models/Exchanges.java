@@ -2,32 +2,33 @@ package org.example.zettahostingjavaassignment.models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+@Entity
+@Table(name = "exchanges")
 public class Exchanges {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "currencyFrom")
     private String currenciesFrom;
-
-    @Column(name = "amountFrom")
-    private double amountFrom;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "currencyTo")
     private String currenciesTo;
-
-    @Column(name = "amountTo")
-    private double amountTo;
-
     @Column(name = "history")
-    private DateTimeFormatter history;
+    private LocalDateTime history;
+    @Column(name = "amount")
+    private double amount;
 
     public Exchanges() {
+    }
+
+    public Exchanges(long id, String currenciesFrom, String currenciesTo, LocalDateTime history, double amount) {
+        this.id = id;
+        this.currenciesFrom = currenciesFrom;
+        this.currenciesTo = currenciesTo;
+        this.history = history;
+        this.amount = amount;
     }
 
     public long getId() {
@@ -46,14 +47,6 @@ public class Exchanges {
         this.currenciesFrom = currenciesFrom;
     }
 
-    public double getAmountFrom() {
-        return amountFrom;
-    }
-
-    public void setAmountFrom(double amountFrom) {
-        this.amountFrom = amountFrom;
-    }
-
     public String getCurrenciesTo() {
         return currenciesTo;
     }
@@ -62,19 +55,21 @@ public class Exchanges {
         this.currenciesTo = currenciesTo;
     }
 
-    public double getAmountTo() {
-        return amountTo;
-    }
-
-    public void setAmountTo(double amountTo) {
-        this.amountTo = amountTo;
-    }
-
-    public DateTimeFormatter getHistory() {
+    public LocalDateTime getHistory() {
         return history;
     }
 
-    public void setHistory(DateTimeFormatter history) {
+    public void setHistory(LocalDateTime history) {
         this.history = history;
     }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 }
+
+
