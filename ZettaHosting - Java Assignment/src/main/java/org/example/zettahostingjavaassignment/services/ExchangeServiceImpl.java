@@ -29,6 +29,10 @@ public class ExchangeServiceImpl implements ExchangeService {
         Optional<Currencies> currencyFrom = currencyRepository.findById(currencies.getCurrenciesFrom().toUpperCase());
 
         if (currencyTo.isPresent() && currencyFrom.isPresent()){
+            if(currencies.getAmount()<0){
+                //TODO throw error that the value you want to convert can't be negative
+                return Optional.empty();
+            }
             Currencies to = currencyTo.get();
             Currencies from = currencyFrom.get();
             double toValue = to.getValueInBGN();
@@ -37,7 +41,6 @@ public class ExchangeServiceImpl implements ExchangeService {
             Double result = toValue * currencies.getAmount() / fromValue;
             return Optional.of(result);
         }
-
         return Optional.empty();
     }
 }
