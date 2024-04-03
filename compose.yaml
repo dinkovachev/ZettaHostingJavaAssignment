@@ -1,0 +1,13 @@
+version: 3.2.4
+
+services:
+
+  db:
+    image: jitesoft/sqlite
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SQLITE_USERNAME: root
+      SQLITE_PASSWORD: root
+      SQLITE_DB: dinkozettadb

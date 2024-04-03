@@ -1,50 +1,53 @@
 package org.example.zettahostingjavaassignment.models;
 
 import jakarta.persistence.*;
-import org.example.zettahostingjavaassignment.models.enums.CurrenciesEnums;
 
+import java.util.Objects;
+
+@Entity
+@Table(name = "currencies")
 public class Currencies {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Enumerated(EnumType.STRING)
-    private CurrenciesEnums currenciesFrom;
-    @Enumerated(EnumType.STRING)
-    private CurrenciesEnums currenciesTo;
-    private double exchangeRate;
+    @Column(name = "name")
+    private String currencyName;
+    @Column(name = "valueInBGN")
+    private double valueInBGN;
 
     public Currencies() {
     }
 
-    public int getId() {
-        return id;
+    public Currencies(String currencyName, double valueInBGN) {
+        this.currencyName = currencyName;
+        this.valueInBGN = valueInBGN;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getCurrencyName() {
+        return currencyName;
     }
 
-    public CurrenciesEnums getCurrenciesFrom() {
-        return currenciesFrom;
+    public void setCurrencyName(String currencyName) {
+        this.currencyName = currencyName;
     }
 
-    public void setCurrenciesFrom(CurrenciesEnums currenciesFrom) {
-        this.currenciesFrom = currenciesFrom;
+    public double getValueInBGN() {
+        return valueInBGN;
     }
 
-    public CurrenciesEnums getCurrenciesTo() {
-        return currenciesTo;
+    public void setValueInBGN(double valueInBGN) {
+        this.valueInBGN = valueInBGN;
     }
 
-    public void setCurrenciesTo(CurrenciesEnums currenciesTo) {
-        this.currenciesTo = currenciesTo;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Currencies that = (Currencies) o;
+        return Objects.equals(currencyName, that.currencyName);
     }
 
-    public double getExchangeRate() {
-        return exchangeRate;
-    }
-
-    public void setExchangeRate(double exchangeRate) {
-        this.exchangeRate = exchangeRate;
+    @Override
+    public int hashCode() {
+        return Objects.hash(currencyName);
     }
 }
