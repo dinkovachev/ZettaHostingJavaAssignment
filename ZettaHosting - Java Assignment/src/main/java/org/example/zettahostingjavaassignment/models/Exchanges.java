@@ -1,7 +1,6 @@
 package org.example.zettahostingjavaassignment.models;
 
 import jakarta.persistence.*;
-import org.example.zettahostingjavaassignment.models.enums.CurrenciesEnums;
 
 import java.time.format.DateTimeFormatter;
 
@@ -13,14 +12,14 @@ public class Exchanges {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "currencyFrom")
-    private CurrenciesEnums currenciesFrom;
+    private String currenciesFrom;
 
     @Column(name = "amountFrom")
     private double amountFrom;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "currencyTo")
-    private CurrenciesEnums currenciesTo;
+    private String currenciesTo;
 
     @Column(name = "amountTo")
     private double amountTo;
@@ -39,11 +38,11 @@ public class Exchanges {
         this.id = id;
     }
 
-    public CurrenciesEnums getCurrenciesFrom() {
+    public String getCurrenciesFrom() {
         return currenciesFrom;
     }
 
-    public void setCurrenciesFrom(CurrenciesEnums currenciesFrom) {
+    public void setCurrenciesFrom(String currenciesFrom) {
         this.currenciesFrom = currenciesFrom;
     }
 
@@ -55,11 +54,11 @@ public class Exchanges {
         this.amountFrom = amountFrom;
     }
 
-    public CurrenciesEnums getCurrenciesTo() {
+    public String getCurrenciesTo() {
         return currenciesTo;
     }
 
-    public void setCurrenciesTo(CurrenciesEnums currenciesTo) {
+    public void setCurrenciesTo(String currenciesTo) {
         this.currenciesTo = currenciesTo;
     }
 
