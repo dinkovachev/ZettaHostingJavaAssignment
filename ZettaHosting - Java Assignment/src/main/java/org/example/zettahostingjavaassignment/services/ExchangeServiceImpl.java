@@ -25,8 +25,8 @@ public class ExchangeServiceImpl implements ExchangeService {
 
     @Override
     public Optional<Double> convert(Exchanges currencies) {
-        Optional<Currencies> currencyTo = currencyRepository.findById(currencies.getCurrenciesTo());
-        Optional<Currencies> currencyFrom = currencyRepository.findById(currencies.getCurrenciesFrom());
+        Optional<Currencies> currencyTo = currencyRepository.findById(currencies.getCurrenciesTo().toUpperCase());
+        Optional<Currencies> currencyFrom = currencyRepository.findById(currencies.getCurrenciesFrom().toUpperCase());
 
         if (currencyTo.isPresent() && currencyFrom.isPresent()){
             Currencies to = currencyTo.get();

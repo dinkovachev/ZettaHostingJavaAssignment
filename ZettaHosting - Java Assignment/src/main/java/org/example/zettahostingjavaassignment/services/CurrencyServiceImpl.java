@@ -17,8 +17,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     public static final String NO_SUCH_CURRENCY_ERROR = "No such currency";
     private CurrencyRepository currencyRepository;
 
-    @Autowired
+
     public CurrencyServiceImpl(CurrencyRepository currencyRepository) {
+
         this.currencyRepository = currencyRepository;
     }
 

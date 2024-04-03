@@ -18,8 +18,9 @@ public class CurrenciesRestController {
 
     private CurrencyService currencyService;
 
-    @Autowired
+
     public CurrenciesRestController(CurrencyService currencyService) {
+
         this.currencyService = currencyService;
     }
 
