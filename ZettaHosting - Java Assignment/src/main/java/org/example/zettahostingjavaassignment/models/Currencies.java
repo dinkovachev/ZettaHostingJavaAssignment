@@ -5,21 +5,17 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "currencies")
 public class Currencies {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "name")
     private String currencyName;
-    @Column(name = "valueInBGN")
-    private double valueInBGN;
+    private double valueInEUR;
 
     public Currencies() {
     }
 
-    public Currencies(String currencyName, double valueInBGN) {
+    public Currencies(String currencyName, double valueInEUR) {
         this.currencyName = currencyName;
-        this.valueInBGN = valueInBGN;
+        this.valueInEUR = valueInEUR;
     }
 
     public String getCurrencyName() {
@@ -30,12 +26,12 @@ public class Currencies {
         this.currencyName = currencyName;
     }
 
-    public double getValueInBGN() {
-        return valueInBGN;
+    public double getValueInEUR() {
+        return valueInEUR;
     }
 
-    public void setValueInBGN(double valueInBGN) {
-        this.valueInBGN = valueInBGN;
+    public void setValueInEUR(double valueInBGN) {
+        this.valueInEUR = valueInBGN;
     }
 
     @Override

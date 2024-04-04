@@ -3,27 +3,20 @@ package org.example.zettahostingjavaassignment.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 @Entity
-@Table(name = "exchanges")
-public class Exchanges {
+public class Conversion {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
-    @Column(name = "currencyFrom")
     private String currenciesFrom;
-    @Column(name = "currencyTo")
     private String currenciesTo;
-    @Column(name = "history")
     private LocalDateTime history;
-    @Column(name = "amount")
     private double amount;
 
-    public Exchanges() {
+    public Conversion() {
     }
 
-    public Exchanges(long id, String currenciesFrom, String currenciesTo, LocalDateTime history, double amount) {
+    public Conversion(long id, String currenciesFrom, String currenciesTo, LocalDateTime history, double amount) {
         this.id = id;
         this.currenciesFrom = currenciesFrom;
         this.currenciesTo = currenciesTo;
