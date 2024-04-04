@@ -5,19 +5,19 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 @Entity
-@Table(name = "exchanges")
+//@Table(name = "exchanges")
 public class Exchanges {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id")
     private long id;
-    @Column(name = "currencyFrom")
+//    @Column(name = "currencyFrom")
     private String currenciesFrom;
-    @Column(name = "currencyTo")
+//    @Column(name = "currencyTo")
     private String currenciesTo;
-    @Column(name = "history")
+//    @Column(name = "history")
     private LocalDateTime history;
-    @Column(name = "amount")
+//    @Column(name = "amount")
     private double amount;
 
     public Exchanges() {

@@ -13,11 +13,12 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class CurrencyInformation {
 
-    private CurrencyRepository currencyRepository;
+    private final CurrencyRepository currencyRepository;
 
     @Value("${fixer.io.api-key}")
     private String fixerIoAPIKey;
 
+    @Autowired
     public CurrencyInformation(CurrencyRepository currencyRepository) {
         this.currencyRepository = currencyRepository;
     }

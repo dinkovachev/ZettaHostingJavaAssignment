@@ -35,8 +35,8 @@ public class ExchangeServiceImpl implements ExchangeService {
             }
             Currencies to = currencyTo.get();
             Currencies from = currencyFrom.get();
-            double toValue = to.getValueInBGN();
-            double fromValue = from.getValueInBGN();
+            double toValue = to.getValueInEUR();
+            double fromValue = from.getValueInEUR();
 
             Double result = toValue * currencies.getAmount() / fromValue;
             return Optional.of(result);
