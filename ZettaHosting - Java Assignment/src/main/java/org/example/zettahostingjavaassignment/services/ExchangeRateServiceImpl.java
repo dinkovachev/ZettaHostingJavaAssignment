@@ -1,7 +1,7 @@
 package org.example.zettahostingjavaassignment.services;
 
 import org.example.zettahostingjavaassignment.models.Currencies;
-import org.example.zettahostingjavaassignment.models.dto.ExchangeRateDTO;
+import org.example.zettahostingjavaassignment.models.ExchangeRate;
 import org.example.zettahostingjavaassignment.repositories.CurrencyRepository;
 import org.example.zettahostingjavaassignment.repositories.ExchangeRateRepository;
 import org.example.zettahostingjavaassignment.services.contracts.ExchangeRateService;
@@ -22,9 +22,9 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     }
 
     @Override
-    public Optional<Double> getExchangeRate(ExchangeRateDTO exchangeRateDTO) {
-        Optional<Currencies> currencyTo = currencyRepository.findById(exchangeRateDTO.getCurrencyTo().toUpperCase());
-        Optional<Currencies> currencyFrom = currencyRepository.findById(exchangeRateDTO.getCurrencyFrom().toUpperCase());
+    public Optional<Double> getExchangeRate(ExchangeRate exchangeRate) {
+        Optional<Currencies> currencyTo = currencyRepository.findById(exchangeRate.getCurrencyTo().toUpperCase());
+        Optional<Currencies> currencyFrom = currencyRepository.findById(exchangeRate.getCurrencyFrom().toUpperCase());
 
         if (currencyTo.isPresent() && currencyFrom.isPresent()) {
             Currencies to = currencyTo.get();

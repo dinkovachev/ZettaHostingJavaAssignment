@@ -2,6 +2,7 @@ package org.example.zettahostingjavaassignment.models;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,13 +11,13 @@ public class Conversion {
     private long id;
     private String currenciesFrom;
     private String currenciesTo;
-    private LocalDateTime history;
+    private Timestamp history;
     private double amount;
 
     public Conversion() {
     }
 
-    public Conversion(long id, String currenciesFrom, String currenciesTo, LocalDateTime history, double amount) {
+    public Conversion(long id, String currenciesFrom, String currenciesTo, Timestamp history, double amount) {
         this.id = id;
         this.currenciesFrom = currenciesFrom;
         this.currenciesTo = currenciesTo;
@@ -48,11 +49,11 @@ public class Conversion {
         this.currenciesTo = currenciesTo;
     }
 
-    public LocalDateTime getHistory() {
+    public Timestamp getHistory() {
         return history;
     }
 
-    public void setHistory(LocalDateTime history) {
+    public void setHistory(Timestamp history) {
         this.history = history;
     }
 

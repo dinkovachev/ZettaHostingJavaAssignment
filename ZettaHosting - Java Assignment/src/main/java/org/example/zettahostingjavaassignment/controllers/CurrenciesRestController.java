@@ -18,7 +18,7 @@ import java.util.Optional;
 @RequestMapping("/api/currencies")
 public class CurrenciesRestController {
 
-    private CurrencyService currencyService;
+    private final CurrencyService currencyService;
 
 
     public CurrenciesRestController(CurrencyService currencyService) {

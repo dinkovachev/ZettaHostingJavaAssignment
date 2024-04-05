@@ -8,6 +8,7 @@ import org.example.zettahostingjavaassignment.services.contracts.ConversionServi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -38,7 +39,7 @@ public class ConversionServiceImpl implements ConversionService {
             Currencies from = currencyFrom.get();
             double toValue = to.getValueInEUR();
             double fromValue = from.getValueInEUR();
-            LocalDateTime transactionIdentifier = currencies.getHistory();
+            Timestamp transactionIdentifier = currencies.getHistory();
 
             Double result = toValue * currencies.getAmount() / fromValue;
 
