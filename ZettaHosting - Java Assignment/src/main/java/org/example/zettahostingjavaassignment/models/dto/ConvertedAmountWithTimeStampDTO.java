@@ -1,16 +1,17 @@
 package org.example.zettahostingjavaassignment.models.dto;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class ConvertedAmountWithTimeStampDTO {
     private double convertedAmount;
 
-    private Timestamp timestamp;
+    private LocalDateTime timestamp;
 
     public ConvertedAmountWithTimeStampDTO() {
     }
 
-    public ConvertedAmountWithTimeStampDTO(double convertedAmount, Timestamp timestamp) {
+    public ConvertedAmountWithTimeStampDTO(double convertedAmount, LocalDateTime timestamp) {
         this.convertedAmount = convertedAmount;
         this.timestamp = timestamp;
     }
@@ -23,11 +24,11 @@ public class ConvertedAmountWithTimeStampDTO {
         this.convertedAmount = convertedAmount;
     }
 
-    public Timestamp getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 }

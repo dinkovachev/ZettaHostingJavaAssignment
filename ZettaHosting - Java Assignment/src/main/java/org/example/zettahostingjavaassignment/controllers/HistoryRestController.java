@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class HistoryRestController {
     @GetMapping
     public ResponseEntity<List<Conversion>> getConversionHistory(
             @RequestParam(value = "transactionDate", required = false)
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Timestamp transactionDate,
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime transactionDate,
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size){
         Page<Conversion> conversions = historyService.getConversionHistory(transactionDate, PageRequest.of(page, size));
