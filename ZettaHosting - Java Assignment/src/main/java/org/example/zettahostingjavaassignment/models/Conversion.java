@@ -8,16 +8,17 @@ import java.time.LocalDateTime;
 @Entity
 public class Conversion {
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String currenciesFrom;
     private String currenciesTo;
-    private Timestamp history;
+    private LocalDateTime history;
     private double amount;
 
     public Conversion() {
     }
 
-    public Conversion(long id, String currenciesFrom, String currenciesTo, Timestamp history, double amount) {
+    public Conversion(Long id, String currenciesFrom, String currenciesTo, LocalDateTime history, double amount) {
         this.id = id;
         this.currenciesFrom = currenciesFrom;
         this.currenciesTo = currenciesTo;
@@ -25,11 +26,11 @@ public class Conversion {
         this.amount = amount;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,11 +50,11 @@ public class Conversion {
         this.currenciesTo = currenciesTo;
     }
 
-    public Timestamp getHistory() {
+    public LocalDateTime getHistory() {
         return history;
     }
 
-    public void setHistory(Timestamp history) {
+    public void setHistory(LocalDateTime history) {
         this.history = history;
     }
 

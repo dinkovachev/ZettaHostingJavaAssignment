@@ -6,10 +6,12 @@ import org.example.zettahostingjavaassignment.repositories.CurrencyRepository;
 import org.example.zettahostingjavaassignment.repositories.ConversionRepository;
 import org.example.zettahostingjavaassignment.services.contracts.ConversionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,12 +41,23 @@ public class ConversionServiceImpl implements ConversionService {
             Currencies from = currencyFrom.get();
             double toValue = to.getValueInEUR();
             double fromValue = from.getValueInEUR();
-            Timestamp transactionIdentifier = currencies.getHistory();
 
             Double result = toValue * currencies.getAmount() / fromValue;
+            LocalDateTime history = LocalDateTime.now();
+            currencies.setHistory(history);
+            conversionRepository.save(new Conversion(null,
+                    from.getCurrencyName(),
+                    to.getCurrencyName(),
+                    history,
+                    result));
 
             return Optional.of(result);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public List<Conversion> findAll() {
+        return conversionRepository.findAll();
     }
 }
