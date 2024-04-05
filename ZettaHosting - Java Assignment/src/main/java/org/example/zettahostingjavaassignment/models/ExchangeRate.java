@@ -1,21 +1,21 @@
-package org.example.zettahostingjavaassignment.models.dto;
+package org.example.zettahostingjavaassignment.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class ExchangeRateDTO {
+public class ExchangeRate {
     @Id
     @JsonIgnore
     private int id;
     private String currencyFrom;
     private String currencyTo;
 
-    public ExchangeRateDTO() {
+    public ExchangeRate() {
     }
 
-    public ExchangeRateDTO(int id, String currencyFrom, String currencyTo) {
+    public ExchangeRate(int id, String currencyFrom, String currencyTo) {
         this.id = id;
         this.currencyFrom = currencyFrom;
         this.currencyTo = currencyTo;

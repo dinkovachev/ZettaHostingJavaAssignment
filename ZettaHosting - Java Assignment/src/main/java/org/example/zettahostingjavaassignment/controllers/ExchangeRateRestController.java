@@ -1,6 +1,6 @@
 package org.example.zettahostingjavaassignment.controllers;
 
-import org.example.zettahostingjavaassignment.models.dto.ExchangeRateDTO;
+import org.example.zettahostingjavaassignment.models.ExchangeRate;
 import org.example.zettahostingjavaassignment.services.contracts.ExchangeRateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequestMapping("/api/exchangeRate")
 public class ExchangeRateRestController {
 
-    private ExchangeRateService exchangeRateService;
+    private final ExchangeRateService exchangeRateService;
 
     @Autowired
     public ExchangeRateRestController(ExchangeRateService exchangeRateService) {
@@ -24,8 +24,8 @@ public class ExchangeRateRestController {
     }
 
     @GetMapping
-    public ResponseEntity<Double> getExchangeRate(@RequestBody ExchangeRateDTO exchangeRateDTO) {
-        Optional<Double> resultOptional = exchangeRateService.getExchangeRate(exchangeRateDTO);
+    public ResponseEntity<Double> getExchangeRate(@RequestBody ExchangeRate exchangeRate) {
+        Optional<Double> resultOptional = exchangeRateService.getExchangeRate(exchangeRate);
         if (resultOptional.isPresent()) {
             return new ResponseEntity<>(resultOptional.get(), HttpStatus.OK);
         }
