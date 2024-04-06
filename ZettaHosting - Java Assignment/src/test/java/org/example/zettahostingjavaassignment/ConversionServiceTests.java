@@ -78,7 +78,7 @@ public class ConversionServiceTests {
     public void convert_Should_Return_Amount_WhenValueIsPositive() {
         //Act, Arrange
         Currencies currenciesEUR = new Currencies("EUR", 1);
-        Currencies currenciesUSD = new Currencies("USD", 0.8);
+        Currencies currenciesUSD = new Currencies("USD", 1.15795);
 
         Mockito.when(mockCurrencyRepository.findById("EUR")).thenReturn(Optional.of(currenciesEUR));
         Mockito.when(mockCurrencyRepository.findById("USD")).thenReturn(Optional.of(currenciesUSD));
