@@ -26,6 +26,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     public List<Currencies> getAllCurrencies() {
         List<Currencies> currenciesList = currencyRepository.findAll();
+        currencyRepository.saveAll(currenciesList);
         currenciesList.sort(Comparator.comparing(Currencies::getCurrencyName));
         return currenciesList;
     }
