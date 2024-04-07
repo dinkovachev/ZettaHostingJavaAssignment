@@ -37,7 +37,7 @@ public class HistoryServiceImpl implements HistoryService {
     }
 
     public static Specification<Conversion> byTransactionDate(LocalDateTime transactionDate) {
-        return (root, query, builder) -> builder.greaterThanOrEqualTo(root.get("history").as(LocalDateTime.class),
+        return (root, query, builder) -> builder.lessThanOrEqualTo(root.get("history").as(LocalDateTime.class),
                 transactionDate);
     }
 }
