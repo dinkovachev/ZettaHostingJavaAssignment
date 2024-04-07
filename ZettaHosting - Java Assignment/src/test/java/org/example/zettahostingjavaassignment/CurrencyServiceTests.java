@@ -52,8 +52,8 @@ public class CurrencyServiceTests {
         Assertions.assertFalse(currenciesList.isEmpty());
 
         //Assert
-        Assertions.assertEquals(currenciesList.get(0).getCurrencyName(), currenciesBGN.getCurrencyName());
-        Assertions.assertEquals(currenciesList.get(1).getCurrencyName(), currenciesEUR.getCurrencyName());
-        Assertions.assertEquals(currenciesList.get(2).getCurrencyName(), currenciesUSD.getCurrencyName());
+        Assertions.assertEquals(currenciesList.get(0).getName(), currenciesBGN.getName());
+        Assertions.assertEquals(currenciesList.get(1).getName(), currenciesEUR.getName());
+        Assertions.assertEquals(currenciesList.get(2).getName(), currenciesUSD.getName());
     }
 }

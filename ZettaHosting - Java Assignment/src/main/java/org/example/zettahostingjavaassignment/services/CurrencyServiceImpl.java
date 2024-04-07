@@ -4,7 +4,6 @@ import jakarta.persistence.EntityNotFoundException;
 import org.example.zettahostingjavaassignment.models.Currencies;
 import org.example.zettahostingjavaassignment.repositories.CurrencyRepository;
 import org.example.zettahostingjavaassignment.services.contracts.CurrencyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -27,7 +26,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     public List<Currencies> getAllCurrencies() {
         List<Currencies> currenciesList = currencyRepository.findAll();
         currencyRepository.saveAll(currenciesList);
-        currenciesList.sort(Comparator.comparing(Currencies::getCurrencyName));
+        currenciesList.sort(Comparator.comparing(Currencies::getName));
         return currenciesList;
     }
 
