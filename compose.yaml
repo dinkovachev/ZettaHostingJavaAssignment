@@ -10,4 +10,4 @@ services:
     environment:
       SQLITE_USERNAME: root
       SQLITE_PASSWORD: root
-      SQLITE_DB: dinkozettadb
+      SQLITE_DB: dinkozettadbnew

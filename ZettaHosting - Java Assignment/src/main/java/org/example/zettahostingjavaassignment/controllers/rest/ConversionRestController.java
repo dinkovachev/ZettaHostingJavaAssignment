@@ -1,4 +1,4 @@
-package org.example.zettahostingjavaassignment.controllers;
+package org.example.zettahostingjavaassignment.controllers.rest;
 
 
 import org.example.zettahostingjavaassignment.models.Conversion;
