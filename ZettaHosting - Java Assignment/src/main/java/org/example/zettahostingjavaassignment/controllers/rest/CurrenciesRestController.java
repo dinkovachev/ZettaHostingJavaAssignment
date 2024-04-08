@@ -3,9 +3,11 @@ package org.example.zettahostingjavaassignment.controllers.rest;
 import jakarta.persistence.EntityNotFoundException;
 import org.example.zettahostingjavaassignment.models.Conversion;
 import org.example.zettahostingjavaassignment.models.Currencies;
+import org.example.zettahostingjavaassignment.models.ExchangeRate;
 import org.example.zettahostingjavaassignment.models.dto.ConvertedAmountWithTimeStampDTO;
 import org.example.zettahostingjavaassignment.services.contracts.ConversionService;
 import org.example.zettahostingjavaassignment.services.contracts.CurrencyService;
+import org.example.zettahostingjavaassignment.services.contracts.ExchangeRateService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +24,15 @@ public class CurrenciesRestController {
     private final CurrencyService currencyService;
     private final ConversionService conversionService;
 
-    public CurrenciesRestController(CurrencyService currencyService, ConversionService conversionService) {
+    private final ExchangeRateService exchangeRateService;
+
+    public CurrenciesRestController(CurrencyService currencyService,
+                                    ConversionService conversionService,
+                                    ExchangeRateService exchangeRateService) {
 
         this.currencyService = currencyService;
         this.conversionService = conversionService;
+        this.exchangeRateService = exchangeRateService;
     }
 
     @GetMapping
@@ -46,6 +53,17 @@ public class CurrenciesRestController {
             LocalDateTime timestamp = currencies.getHistory();
             ConvertedAmountWithTimeStampDTO result = new ConvertedAmountWithTimeStampDTO(convertedAmount, timestamp);
             return new ResponseEntity<>(result, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/exchangeRate")
+    public ResponseEntity<Double> getExchangeRate(@RequestParam("currenciesFrom") String currenciesFrom,
+                                                  @RequestParam("currenciesTo") String currenciesTo) {
+        ExchangeRate exchangeRate = new ExchangeRate(currenciesFrom, currenciesTo);
+        Optional<Double> resultOptional = exchangeRateService.getExchangeRate(exchangeRate);
+        if (resultOptional.isPresent()) {
+            return new ResponseEntity<>(resultOptional.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
