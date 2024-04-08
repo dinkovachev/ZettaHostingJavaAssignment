@@ -1,8 +1,6 @@
 package org.example.zettahostingjavaassignment.models;
 
 import jakarta.persistence.*;
-
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity

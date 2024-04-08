@@ -28,6 +28,8 @@ public class HistoryRestController {
         this.historyService = historyService;
     }
 
+    //Moved the logic to the CurrenciesRestController since JS couldn't recognize the endpoint correctly
+    // Better to have it separately to follow the SingleResponsibility Principle
     @GetMapping
     public ResponseEntity<List<Conversion>> getConversionHistory(
             @RequestParam(value = "transactionDate", required = false)

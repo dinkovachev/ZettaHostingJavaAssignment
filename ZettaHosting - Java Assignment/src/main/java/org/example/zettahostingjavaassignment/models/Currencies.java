@@ -1,7 +1,6 @@
 package org.example.zettahostingjavaassignment.models;
 
 import jakarta.persistence.*;
-
 import java.util.Objects;
 
 @Entity

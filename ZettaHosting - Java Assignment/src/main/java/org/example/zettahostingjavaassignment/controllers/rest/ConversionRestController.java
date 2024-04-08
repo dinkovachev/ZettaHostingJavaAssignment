@@ -32,6 +32,8 @@ public class ConversionRestController {
         return ResponseEntity.ok(conversionService.findAll());
     }
 
+    //Moved the logic to the CurrenciesRestController since JS couldn't recognize the endpoint correctly
+    // Better to have it separately to follow the SingleResponsibility Principle
     @PostMapping
     public ResponseEntity<ConvertedAmountWithTimeStampDTO> convertCurrencies(@RequestBody Conversion currencies) {
         currencies.setHistory(LocalDateTime.now());

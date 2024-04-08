@@ -23,6 +23,8 @@ public class ExchangeRateRestController {
         this.exchangeRateService = exchangeRateService;
     }
 
+    //Moved the logic to the CurrenciesRestController since JS couldn't recognize the endpoint correctly
+    // Better to have it separately to follow the SingleResponsibility Principle
     @GetMapping
     public ResponseEntity<Double> getExchangeRate(@RequestBody ExchangeRate exchangeRate) {
         Optional<Double> resultOptional = exchangeRateService.getExchangeRate(exchangeRate);

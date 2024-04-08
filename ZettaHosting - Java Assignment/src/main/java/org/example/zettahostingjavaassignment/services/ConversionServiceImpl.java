@@ -32,7 +32,6 @@ public class ConversionServiceImpl implements ConversionService {
 
         if (currencyTo.isPresent() && currencyFrom.isPresent()) {
             if (currencies.getAmount() < 0) {
-                //TODO throw error that the value you want to convert can't be negative
                 return Optional.empty();
             }
             Currencies to = currencyTo.get();
@@ -40,7 +39,7 @@ public class ConversionServiceImpl implements ConversionService {
             double toValue = to.getValueInEUR();
             double fromValue = from.getValueInEUR();
 
-            Double result = toValue * currencies.getAmount() / fromValue;
+            double result = toValue * currencies.getAmount() / fromValue;
             LocalDateTime history = LocalDateTime.now();
             currencies.setHistory(history);
             conversionRepository.save(new Conversion(null,
