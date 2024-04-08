@@ -54,7 +54,7 @@ public class CurrenciesRestController {
     public ResponseEntity<ConvertedAmountWithTimeStampDTO> convertCurrencies(@RequestBody Conversion currencies) {
         currencies.setHistory(LocalDateTime.now());
         Optional<Double> resultOptional = conversionService.convert(currencies);
-        if (resultOptional.isPresent()){
+        if (resultOptional.isPresent()) {
             double convertedAmount = resultOptional.get();
             LocalDateTime timestamp = currencies.getHistory();
             ConvertedAmountWithTimeStampDTO result = new ConvertedAmountWithTimeStampDTO(convertedAmount, timestamp);
@@ -79,7 +79,7 @@ public class CurrenciesRestController {
             @RequestParam(value = "transactionDate", required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime transactionDate,
             @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size){
+            @RequestParam(value = "size", defaultValue = "10") int size) {
         Page<Conversion> conversions = historyService.getConversionHistory(transactionDate, PageRequest.of(page, size));
         return ResponseEntity.ok()
                 .header("X-total-count", String.valueOf(conversions.getTotalElements()))
