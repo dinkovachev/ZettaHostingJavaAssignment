@@ -34,7 +34,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     public Optional<Currencies> getByName(String name) {
         try {
             return currencyRepository.findById(name);
-        } catch (EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException(NO_SUCH_CURRENCY_ERROR);
         }
     }

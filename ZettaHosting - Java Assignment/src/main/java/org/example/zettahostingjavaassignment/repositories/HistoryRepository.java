@@ -7,8 +7,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
-
 @Repository
 public interface HistoryRepository extends JpaRepository<Conversion, Long> {
     Page<Conversion> findAll(Specification<Conversion> spec, Pageable pageable);

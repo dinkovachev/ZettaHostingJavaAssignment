@@ -9,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +26,7 @@ public class ConversionRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Conversion>> findAll(){
+    public ResponseEntity<List<Conversion>> findAll() {
         return ResponseEntity.ok(conversionService.findAll());
     }
 
@@ -38,7 +36,7 @@ public class ConversionRestController {
     public ResponseEntity<ConvertedAmountWithTimeStampDTO> convertCurrencies(@RequestBody Conversion currencies) {
         currencies.setHistory(LocalDateTime.now());
         Optional<Double> resultOptional = conversionService.convert(currencies);
-        if (resultOptional.isPresent()){
+        if (resultOptional.isPresent()) {
             double convertedAmount = resultOptional.get();
             LocalDateTime timestamp = currencies.getHistory();
             ConvertedAmountWithTimeStampDTO result = new ConvertedAmountWithTimeStampDTO(convertedAmount, timestamp);
