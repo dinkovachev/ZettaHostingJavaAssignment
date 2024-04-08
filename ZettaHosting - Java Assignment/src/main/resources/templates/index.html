@@ -98,14 +98,16 @@
             <input type="datetime-local" id="dateInput">
             <button id="searchButton">Search</button>
             <div id="conversionHistory">
-
                 <script>
+                    let currentPage = 0;
+                    const pageSize = 10;
                     document.getElementById('searchButton').addEventListener('click', function () {
                         const dateInput = document.getElementById('dateInput').value;
                         const isoDateTime = new Date(dateInput).toISOString();
-                        console.log(isoDateTime);
                         const formattedDate = isoDateTime.slice(0, 19);
-                        fetch(`/api/currencies/history?transactionDate=${formattedDate}`)
+                        const page = currentPage;
+
+                        fetch(`/api/currencies/history?transactionDate=${formattedDate}&page=${page}&size=${pageSize}`)
                             .then(response => {
                                 if (!response.ok) {
                                     throw new Error('Failed to fetch conversion history');
@@ -113,11 +115,9 @@
                                 return response.json()
                             })
                             .then(data => {
-                                // Process the response data and update the webpage content
-                                // Example: display conversion history in a div
                                 console.log(data);
                                 const historyDiv = document.getElementById('conversionHistory');
-                                historyDiv.innerHTML = ''; // Clear previous content
+                                historyDiv.innerHTML = '';
                                 if (Array.isArray(data) && data.length > 0) {
                                     data.forEach(conversion => {
                                         const conversionInfo = document.createElement('div');
@@ -134,7 +134,27 @@
                                 console.error('Error fetching conversion history:', error);
                             });
                     });
+                    function nextPage() {
+                        currentPage++; // Increment the page number
+                        document.getElementById('searchButton').click(); // Trigger the search button click event
+                        updatePageNumber();
+                    }
+                    function previousPage() {
+                        if (currentPage > 0) {
+                            currentPage--; // Decrement the page number if not on the first page
+                            document.getElementById('searchButton').click(); // Trigger the search button click event
+                            updatePageNumber();
+                        }
+                    }
+                    function updatePageNumber() {
+                        document.getElementById('currentPage').textContent = `${currentPage}`;
+                    }
                 </script>
+            </div>
+            <div id="paginationButtons">
+                <button onclick="previousPage()"><<</button>
+                <span id="currentPage"></span>
+                <button onclick="nextPage()">>></button>
             </div>
         </div>
     </div>
