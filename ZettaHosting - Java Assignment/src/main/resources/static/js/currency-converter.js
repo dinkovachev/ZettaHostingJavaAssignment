@@ -82,7 +82,7 @@ $("#convertButton").click(function () {
             Timestamp: ${timestamp.replace('T', ' ').split('.')[0]}`);
         },
         error: function (data) {
-            alert('There was a problem with converting the amount!')
+            alert('There was a problem with converting the amount! Amount is negative.')
         }
     });
 
