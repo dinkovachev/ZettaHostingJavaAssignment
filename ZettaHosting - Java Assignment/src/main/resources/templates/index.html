@@ -103,6 +103,10 @@
                     const pageSize = 10;
                     document.getElementById('searchButton').addEventListener('click', function () {
                         const dateInput = document.getElementById('dateInput').value;
+                        if (!dateInput) {
+                            alert('Please select a date and time for filtering.');
+                            return;
+                        }
                         const isoDateTime = new Date(dateInput).toISOString();
                         const formattedDate = isoDateTime.slice(0, 19);
                         const page = currentPage;
@@ -127,7 +131,9 @@
                                     });
                                 } else {
                                     const errorDiv = document.createElement('div');
-                                    errorDiv.textContent = "No conversion history found.";
+                                    errorDiv.textContent = `No conversion history found.`;
+                                    historyDiv.appendChild(errorDiv);
+                                    console.log(errorDiv);
                                     console.error('Response data is not an array:', data);
                                 }
                             })
