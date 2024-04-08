@@ -86,30 +86,62 @@
 
             </div>
         </div>
-            <div class="col-md-4">
-                <h2>Result</h2>
-                <h3 id="convertResult"></h3>
-                <h3 id="exchangeRateResult"></h3>
+        <div class="col-md-4">
+            <h2>Result</h2>
+            <h3 id="convertResult"></h3>
+            <h3 id="exchangeRateResult"></h3>
+        </div>
+        _______________________________________________________________________________________________________________
+        <div class="col-md-8">
+            <h2>History</h2>
+            <label for="dateInput">Select Date:</label>
+            <input type="datetime-local" id="dateInput">
+            <button id="searchButton">Search</button>
+            <div id="conversionHistory">
+
+                <script>
+                    document.getElementById('searchButton').addEventListener('click', function () {
+                        const dateInput = document.getElementById('dateInput').value;
+                        const isoDateTime = new Date(dateInput).toISOString();
+                        console.log(isoDateTime);
+                        const formattedDate = isoDateTime.slice(0, 19);
+                        fetch(`/api/currencies/history?transactionDate=${formattedDate}`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Failed to fetch conversion history');
+                                }
+                                return response.json()
+                            })
+                            .then(data => {
+                                // Process the response data and update the webpage content
+                                // Example: display conversion history in a div
+                                console.log(data);
+                                const historyDiv = document.getElementById('conversionHistory');
+                                historyDiv.innerHTML = ''; // Clear previous content
+                                if (Array.isArray(data) && data.length > 0) {
+                                    data.forEach(conversion => {
+                                        const conversionInfo = document.createElement('div');
+                                        conversionInfo.textContent = `Amount: ${conversion.amount}, Timestamp: ${conversion.history}`;
+                                        historyDiv.appendChild(conversionInfo);
+                                    });
+                                } else {
+                                    const errorDiv = document.createElement('div');
+                                    errorDiv.textContent = "No conversion history found.";
+                                    console.error('Response data is not an array:', data);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error fetching conversion history:', error);
+                            });
+                    });
+                </script>
             </div>
-
-
-
-
-    <div class="col-md-8">
-        <h2>Heading</h2>
-        <p>Something something</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View Details </a></p>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Something something</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View Details </a></p>
-    </div>
-</div>
-<hr>
-<footer>
-    <p>Copyright</p>
-</footer>
+    <hr>
+    <footer>
+        <p>Copyright</p>
+    </footer>
 </div>
 </div>
 
