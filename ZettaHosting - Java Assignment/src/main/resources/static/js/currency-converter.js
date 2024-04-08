@@ -82,7 +82,14 @@ $("#convertButton").click(function () {
             Timestamp: ${timestamp.replace('T', ' ').split('.')[0]}`);
         },
         error: function (data) {
-            alert('There was a problem with converting the amount! Amount is negative.')
+            if ($('#amountInput').val() < 0) {
+                alert('Amount must be positive');
+            }
+            if ($('#dropdownFromButton').text().trim() === 'Choose...' || $('#dropdownToButton').text().trim() === 'Choose...') {
+                alert('Please select currencies to convert');
+            } else {
+                alert('There was a problem with converting the amount!');
+            }
         }
     });
 
@@ -109,7 +116,11 @@ $("#exchangeRate").click(function () {
             $("#exchangeRateResult").text("Exchange Rate:" + data.toFixed(2));
         },
         error: function (data) {
-            alert('There was a problem with getting the exchange Rate!')
+            if ($('#dropdownFromButton').text().trim() === 'Choose...' || $('#dropdownToButton').text().trim() === 'Choose...') {
+                alert('Please select currencies to get exchange rate')
+            } else {
+                alert('There was a problem with converting the amount!');
+            }
         }
     });
 })
