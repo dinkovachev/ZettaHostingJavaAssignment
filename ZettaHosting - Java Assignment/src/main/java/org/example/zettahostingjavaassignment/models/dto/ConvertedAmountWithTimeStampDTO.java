@@ -1,6 +1,5 @@
 package org.example.zettahostingjavaassignment.models.dto;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class ConvertedAmountWithTimeStampDTO {

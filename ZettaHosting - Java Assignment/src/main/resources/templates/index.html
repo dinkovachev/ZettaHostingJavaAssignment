@@ -121,7 +121,8 @@
                                 if (Array.isArray(data) && data.length > 0) {
                                     data.forEach(conversion => {
                                         const conversionInfo = document.createElement('div');
-                                        conversionInfo.textContent = `Amount: ${conversion.amount}, Timestamp: ${conversion.history}`;
+                                        conversionInfo.textContent = `Amount: ${conversion.amount.toFixed(2)},
+                                        Timestamp: ${conversion.history.replace('T', ' ').split('.')[0]}`;
                                         historyDiv.appendChild(conversionInfo);
                                     });
                                 } else {

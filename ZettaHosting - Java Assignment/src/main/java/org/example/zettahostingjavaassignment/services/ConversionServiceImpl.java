@@ -40,7 +40,7 @@ public class ConversionServiceImpl implements ConversionService {
             double toValue = to.getValueInEUR();
             double fromValue = from.getValueInEUR();
 
-            Double result = toValue * currencies.getAmount() / fromValue;
+            double result = toValue * currencies.getAmount() / fromValue;
             LocalDateTime history = LocalDateTime.now();
             currencies.setHistory(history);
             conversionRepository.save(new Conversion(null,

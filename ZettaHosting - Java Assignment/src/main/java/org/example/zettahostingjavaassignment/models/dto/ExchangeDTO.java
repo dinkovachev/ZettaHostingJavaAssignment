@@ -1,7 +1,5 @@
 package org.example.zettahostingjavaassignment.models.dto;
 
-import java.util.Map;
-
 public class ExchangeDTO {
 
     private String convertTo;

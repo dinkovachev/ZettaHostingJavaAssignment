@@ -78,7 +78,8 @@ $("#convertButton").click(function () {
             console.log(data);
             const convertedAmount = data.convertedAmount;
             const timestamp = data.timestamp;
-            $("#convertResult").text(`Converted Amount: ${convertedAmount}, Timestamp: ${timestamp}`);
+            $("#convertResult").text(`Converted Amount: ${convertedAmount.toFixed(2)}, 
+            Timestamp: ${timestamp.replace('T', ' ').split('.')[0]}`);
         },
         error: function (data) {
             alert('There was a problem with converting the amount!')
@@ -105,7 +106,7 @@ $("#exchangeRate").click(function () {
             console.log(data);
             const exchangeRate = data.exchangeRate;
 
-            $("#exchangeRateResult").text("Exchange Rate:" + data);
+            $("#exchangeRateResult").text("Exchange Rate:" + data.toFixed(2));
         },
         error: function (data) {
             alert('There was a problem with getting the exchange Rate!')
