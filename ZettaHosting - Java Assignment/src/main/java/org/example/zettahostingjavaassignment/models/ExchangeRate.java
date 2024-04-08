@@ -15,8 +15,8 @@ public class ExchangeRate {
     public ExchangeRate() {
     }
 
-    public ExchangeRate(int id, String currencyFrom, String currencyTo) {
-        this.id = id;
+    public ExchangeRate(String currencyFrom, String currencyTo) {
+
         this.currencyFrom = currencyFrom;
         this.currencyTo = currencyTo;
     }

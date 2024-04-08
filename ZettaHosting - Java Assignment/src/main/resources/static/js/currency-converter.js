@@ -86,3 +86,30 @@ $("#convertButton").click(function () {
     });
 
 })
+
+$("#exchangeRate").click(function () {
+    const currenciesFrom = $('#dropdownFromButton').text();
+    const currenciesTo = $('#dropdownToButton').text();
+    // const amount = $('#amountInput').val();
+
+    $.ajax({
+        type: "GET",
+        url: "/api/currencies/exchangeRate",
+        data: {
+            "currenciesFrom": currenciesFrom,
+            "currenciesTo": currenciesTo,
+            // "amount": amount
+        },
+        contentType: "application/json",
+        success: function (data) {
+            console.log(data);
+            const exchangeRate = data.exchangeRate;
+            const timestamp = data.timestamp;
+            $("#exchangeRateResult").text("Exchange Rate:" + data);
+        },
+        error: function (data) {
+            alert('There was a problem with getting the exchange Rate!')
+        }
+    });
+
+})
